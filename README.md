@@ -1,4 +1,4 @@
-# 📸 Анна - Фотограф | Professional Photography Portfolio
+# 📸 Марина - Фотограф | Professional Photography Portfolio
 
 A beautiful, responsive photography portfolio website built with React, TypeScript, and Tailwind CSS. Features an elegant design with interactive galleries, booking system, and customer testimonials.
 
