@@ -11,6 +11,10 @@ import ImageModal from '../components/ImageModal';
 import BookingCalendar from '../components/BookingCalendar';
 import TestimonialsSection from '../components/TestimonialsSection';
 
+// Import local images
+import heroImage from '../assets/images/hero/hero-main.jpg';
+import logoUfcp from '../assets/images/logo/logo-ufcp.svg';
+
 export default function Home() {
   // Состояние для модального окна галереи
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -124,7 +128,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-stone-50 to-amber-50" style={{ fontFamily: 'serif' }}>
-      <style jsx>{`
+      <style>{`
         .animate-fade-in-up {
           animation: fadeInUp 0.8s ease-out forwards;
         }
@@ -189,7 +193,7 @@ export default function Home() {
                 <Camera className="h-6 w-6 text-white" />
               </div>
               <div>
-                <span className="text-2xl font-bold text-gray-800 tracking-wide" style={{ fontFamily: 'serif' }}>Анна</span>
+                <span className="text-2xl font-bold text-gray-800 tracking-wide" style={{ fontFamily: 'serif' }}>Марина</span>
                 <div className="text-sm text-amber-700 tracking-widest uppercase">Фотограф</div>
               </div>
             </div>
@@ -306,22 +310,31 @@ export default function Home() {
               <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
                 <img
-                  src="https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/ed585809-7d48-47a1-a035-8f1c3e7f12a4.jpg"
-                  alt="Анна - профессиональный фотограф"
+                  src={heroImage}
+                  alt="Марина - профессиональный фотограф"
                   className="object-cover w-full h-full hover:scale-105 transition-transform duration-700"
                 />
               </div>
-              <div className="absolute -bottom-8 -right-8 bg-white rounded-3xl p-8 shadow-2xl border border-amber-100">
+              <div className="absolute -bottom-7 -left-7 bg-white rounded-full p-8 shadow-2xl border border-amber-100 w-32 h-32 flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-4xl font-bold text-amber-700 mb-2" style={{ fontFamily: 'serif' }}>8+</div>
                   <div className="text-sm text-gray-600 tracking-wider uppercase">лет опыта</div>
                   <div className="w-8 h-px bg-amber-400 mx-auto mt-2"></div>
                 </div>
               </div>
-              <div className="absolute -top-6 -left-6 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-2xl p-6 shadow-xl text-white">
-                <div className="text-center">
-                  <div className="text-2xl font-bold mb-1">500+</div>
-                  <div className="text-xs tracking-wider uppercase">Счастливых семей</div>
+              <div className="absolute -top-6 -right-6 bg-gradient-to-br from-amber-400/90 to-yellow-800/90 rounded-full p-6 shadow-xl text-white w-36 h-36">
+                <div className="relative h-full">
+                  {/* Logo in top-left corner */}
+                  <img 
+                    src={logoUfcp} 
+                    alt="Логотип Союза Церковных Фотографов" 
+                    className="w-16 h-12 absolute top-0 left-2"
+                  />
+                  {/* Text in three lines at bottom center */}
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center">
+                    <div className="text-[10px] tracking-wider uppercase leading-medium">В Союзе</div>
+                    <div className="text-[10px] tracking-wider uppercase leading-medium">Церковных Фотографов</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -346,7 +359,7 @@ export default function Home() {
               </div>
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed tracking-wide" style={{ fontFamily: 'serif', lineHeight: '1.9' }}>
                 <p>
-                  Меня зовут Анна, и для меня фотография — это не просто профессия, а призвание. 
+                  Меня зовут Марина, и для меня фотография — это не просто профессия, а призвание. 
                   Восемь лет назад я впервые взяла в руки камеру и поняла, что нашла свой путь в жизни.
                 </p>
                 <p>
@@ -643,8 +656,8 @@ export default function Home() {
             <div className="space-y-10 animate-on-scroll">
               {[
                 { icon: Phone, label: "Телефон", value: "+7 (999) 123-45-67" },
-                { icon: Mail, label: "Email", value: "anna@photographer.ru" },
-                { icon: Instagram, label: "Instagram", value: "@anna_photographer" },
+                { icon: Mail, label: "Email", value: "marina@photographer.ru" },
+                { icon: Instagram, label: "Instagram", value: "@marina_photographer" },
                 { icon: MapPin, label: "Локация", value: "Москва и Московская область" }
               ].map((contact, index) => (
                 <div key={index} className="flex items-center space-x-6">
@@ -751,7 +764,7 @@ export default function Home() {
                 <Camera className="h-6 w-6 text-white" />
               </div>
               <div>
-                <span className="text-2xl font-bold tracking-wide" style={{ fontFamily: 'serif' }}>Анна</span>
+                <span className="text-2xl font-bold tracking-wide" style={{ fontFamily: 'serif' }}>Марина</span>
                 <div className="text-sm text-amber-400 tracking-widest uppercase">Фотограф</div>
               </div>
             </div>
