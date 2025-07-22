@@ -15,28 +15,83 @@ import TestimonialsSection from '../components/TestimonialsSection';
 import heroImage from '../assets/images/hero/hero-main.jpg';
 import logoUfcp from '../assets/images/logo/logo-ufcp.svg';
 
+// Import gallery images
+import familyImage1 from '../assets/images/gallery/family/bL_YZLL1FlsnmX6L6QKj0qIeFYfd66AkxU8tPcRQ-tsih0-tps1xmjtvQOwYr3tmgFNbby9wU23CUOVKqtRh8fv_.jpg';
+import baptismImage1 from '../assets/images/gallery/baptism/0JTsIF7CuSg2OOeWU4X8DDlEgqPnOAfeaw6wTcPogEcqt4OB4NUHhRrLJErLtQBl6A90RsvHu3Yij2QU3vvqaLW_.jpg';
+import weddingImage1 from '../assets/images/gallery/ch-wedding/5x-94iSh8XxiaIOka1CVpCacSFgXNdYklF2JiyZmquO3lBFs_2NWxpwC4kadUY54ZyuCcGI_bWtANRLC7jqp4j3e.jpg';
+
+// Import all family images
+import familyImage2 from '../assets/images/gallery/family/R_7-RfA8TXX5LECXlbFtrhD8VzXasJzKKnm8LoRB1IF_vHPAZgjq55CnADOONSNZaEG34fRsLlfKoxv6LU5Gc7Pp.jpg';
+import familyImage3 from '../assets/images/gallery/family/E_cZpXxCA6hpGt6CyyD5VqY_HK3KqVDNF3GxORlM4nzZgBxugnwxkyBHf6SlD7xvJL-7tjZKKuFWICc3d4chXq2t.jpg';
+import familyImage4 from '../assets/images/gallery/family/G_F7k9BGTP4BaLBoU8TYPVAfPnmtb_xDfwZrrOvOwSSWGf-VNUH7JJdgXC1iYj1fJ6HvKpcjBiRSC_5F4s3ydzR7.jpg';
+import familyImage5 from '../assets/images/gallery/family/d2s57pktGDZcbVYGMjIi6GQgMDpaloiyorkExipmdhO4EQCgHk7bTTtmJwIaIdlupqEGNr39XJFGpRVY8gPvDN1S.jpg';
+import familyImage6 from '../assets/images/gallery/family/uUGRr_Hljo2mc9CkCT9RqYrZDvzx_A79o3WczCkRJRaA1uThucm1bMT5BA0XTi06_Sxm0k24ojDgLxJXUQLY17Bv.jpg';
+
+// Import all baptism images
+import baptismImage2 from '../assets/images/gallery/baptism/sRXAtQzZnU3DlnrhM0R-ivzRtZ31mVH9yFBYLqS4ITi9r5Rw16AKi4-wtnqJrwqIVmwID9nIhes4x3xIsHHT2ScM.jpg';
+import baptismImage3 from '../assets/images/gallery/baptism/cbv_fW6tM_4gsHtNc97EGswVSHoyUn7QqzXHVyoMb8HIarGg0Z7TpshbJIdxEalZd2jWHpgZB8QGop8wwLWk3umh.jpg';
+import baptismImage4 from '../assets/images/gallery/baptism/rFrJ4SPoLZwg9DWBbQaF1zIxudF1p3a1mblhO4TTUq6DPvYWAMepbyfnwrQEtLg8ZSJdR6lfESEkHd5y9IdQQ5gJ.jpg';
+import baptismImage5 from '../assets/images/gallery/baptism/h6WNj0bA1Kk0oiB_AD3OcGDzEkwafF6wCd7ZgOUg3DhRTlB7v5O5EmJyZdvQVaqJiINIR2uus8bFe8yOXFno1ajL.jpg';
+
+// Import all wedding images
+import weddingImage2 from '../assets/images/gallery/ch-wedding/kSGS5v7sOqpW-yhSl_rz-GgvFZO2W40dmICYEjRLXwBxJGL8tLGfn8TLk8okjRJGBwdkH_5bervvvTKhN88yYN5P.jpg';
+import weddingImage3 from '../assets/images/gallery/ch-wedding/vdU9ufDmYMVRGnG2A_oDWjesSNhhWvYDiHheYevCuVkrmhZKGMa3ZcGPhtUMLE1kZ9vGE3BZ-EVMdNJR0RWb_Rus.jpg';
+import weddingImage4 from '../assets/images/gallery/ch-wedding/WT5qbdCIQ1SbrWOgVNf7hEdXOO45z_cYL4AEdCFDjL_pXg2bppWWyHByCAmLEcLs8cpYhRfAw6DbCHcsWvSe8X0B.jpg';
+import weddingImage5 from '../assets/images/gallery/ch-wedding/C3Jp4NtGg7OMiXitX7dYpK0t6KAX5pfHAFfL28lC_ybUZKnx0HYvmLq2Q8IqvPyegnI9W60alKgU4rzPdnPxXkrB.jpg';
+
 export default function Home() {
   // Состояние для модального окна галереи
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   // Состояние мобильного меню
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // Состояние для категорийной галереи
+  const [currentGallery, setCurrentGallery] = useState<string | null>(null);
+  const [categoryImageIndex, setCategoryImageIndex] = useState(0);
+  // Состояние для слайдшоу избранных работ
+  const [slideshowIndex, setSlideshowIndex] = useState(0);
 
-  // Данные для галереи
+  // Данные для галереи - избранные работы (3 фото из каждой категории)
   const galleryImages = [
-    { src: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/021a10d0-a98a-4283-bb0e-390974bca04f.jpg", alt: "Счастливая семья на природе" },
-    { src: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/173e13b0-7cc5-4057-9c2c-8891589b0d8d.jpg", alt: "Церемония венчания в храме" },
-    { src: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/339107e3-5925-4f38-b658-8844d2019681.jpg", alt: "Фотосессия беременной женщины" },
-    { src: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/601749de-d6f3-4f74-b0c0-73ed7a967b9c.jpg", alt: "Семья играет вместе" },
-    { src: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/117e2567-3d35-4304-b647-4b3f1356e25a.jpg", alt: "Обмен обручальными кольцами" },
-    { src: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/359435c6-5142-42a2-b541-fed2431939a2.jpg", alt: "Силуэт беременной на закате" },
-    { src: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/7394dbd9-d986-49bc-9772-5051aab50c9b.jpg", alt: "Смеющиеся дети" },
-    { src: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/4882c0a7-49f7-43f1-ad40-66ff5b80b012.jpg", alt: "Портрет пары" },
-    { src: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/6c3d6aa8-ace1-46a4-8843-de444b9ce9dc.jpg", alt: "Фотография животика" },
-    { src: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/82235fa9-69fb-494f-a3a7-ded7f2b0151f.jpg", alt: "Семейные объятия" },
-    { src: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/64d6af92-65c8-48d1-8a77-09093fe83f3e.jpg", alt: "Поцелуй молодоженов" },
-    { src: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/49ce27ad-acc3-4348-b9f5-4f0346885ff2.jpg", alt: "Сияние материнства" }
+    // Family photos
+    { src: familyImage1, alt: "Семейная фотография 1", category: "family" },
+    { src: familyImage3, alt: "Семейная фотография 2", category: "family" },
+    { src: familyImage5, alt: "Семейная фотография 3", category: "family" },
+    // Baptism photos
+    { src: baptismImage1, alt: "Крещение 1", category: "baptism" },
+    { src: baptismImage3, alt: "Крещение 2", category: "baptism" },
+    { src: baptismImage5, alt: "Крещение 3", category: "baptism" },
+    // Wedding photos
+    { src: weddingImage1, alt: "Венчание 1", category: "wedding" },
+    { src: weddingImage2, alt: "Венчание 2", category: "wedding" },
+    { src: weddingImage4, alt: "Венчание 3", category: "wedding" }
   ];
+
+  // Данные для категорийных галерей
+  const categoryGalleries = {
+    family: [
+      { src: familyImage1, alt: "Семейная фотография 1" },
+      { src: familyImage2, alt: "Семейная фотография 2" },
+      { src: familyImage3, alt: "Семейная фотография 3" },
+      { src: familyImage4, alt: "Семейная фотография 4" },
+      { src: familyImage5, alt: "Семейная фотография 5" },
+      { src: familyImage6, alt: "Семейная фотография 6" }
+    ],
+    baptism: [
+      { src: baptismImage1, alt: "Крещение 1" },
+      { src: baptismImage2, alt: "Крещение 2" },
+      { src: baptismImage3, alt: "Крещение 3" },
+      { src: baptismImage4, alt: "Крещение 4" },
+      { src: baptismImage5, alt: "Крещение 5" }
+    ],
+    wedding: [
+      { src: weddingImage1, alt: "Венчание 1" },
+      { src: weddingImage2, alt: "Венчание 2" },
+      { src: weddingImage3, alt: "Венчание 3" },
+      { src: weddingImage4, alt: "Венчание 4" },
+      { src: weddingImage5, alt: "Венчание 5" }
+    ]
+  };
 
   /**
    * Открытие модального окна с изображением
@@ -69,6 +124,46 @@ export default function Home() {
     setCurrentImageIndex((prev) => 
       (prev + 1) % galleryImages.length
     );
+  };
+
+  /**
+   * Открытие категорийной галереи
+   */
+  const openCategoryGallery = (category: string) => {
+    setCurrentGallery(category);
+    setCategoryImageIndex(0);
+  };
+
+  /**
+   * Закрытие категорийной галереи
+   */
+  const closeCategoryGallery = () => {
+    setCurrentGallery(null);
+    setCategoryImageIndex(0);
+  };
+
+  /**
+   * Переход к предыдущему изображению в категории
+   */
+  const goToPreviousCategory = () => {
+    if (currentGallery) {
+      const images = categoryGalleries[currentGallery as keyof typeof categoryGalleries];
+      setCategoryImageIndex((prev) => 
+        prev === 0 ? images.length - 1 : prev - 1
+      );
+    }
+  };
+
+  /**
+   * Переход к следующему изображению в категории
+   */
+  const goToNextCategory = () => {
+    if (currentGallery) {
+      const images = categoryGalleries[currentGallery as keyof typeof categoryGalleries];
+      setCategoryImageIndex((prev) => 
+        (prev + 1) % images.length
+      );
+    }
   };
 
   /**
@@ -126,6 +221,37 @@ export default function Home() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  /**
+   * Обработка клавиатурной навигации для категорийной галереи
+   */
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (currentGallery) {
+        if (event.key === 'Escape') {
+          closeCategoryGallery();
+        } else if (event.key === 'ArrowLeft') {
+          goToPreviousCategory();
+        } else if (event.key === 'ArrowRight') {
+          goToNextCategory();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [currentGallery]);
+
+  /**
+   * Автоматическое вращение слайдшоу избранных работ
+   */
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSlideshowIndex((prev) => (prev + 1) % galleryImages.length);
+    }, 3000); // Смена каждые 3 секунды
+
+    return () => clearInterval(interval);
+  }, [galleryImages.length]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-stone-50 to-amber-50" style={{ fontFamily: 'serif' }}>
       <style>{`
@@ -181,6 +307,76 @@ export default function Home() {
         @keyframes fadeIn {
           from { opacity: 0; }
           to { opacity: 1; }
+        }
+
+        /* Cinematic slideshow transitions */
+        .slideshow-image {
+          transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slideshow-image-enter {
+          opacity: 0;
+          transform: scale(1.1) rotate(1deg);
+          filter: blur(2px);
+        }
+
+        .slideshow-image-active {
+          opacity: 1;
+          transform: scale(1) rotate(0deg);
+          filter: blur(0px);
+        }
+
+        .slideshow-image-exit {
+          opacity: 0;
+          transform: scale(0.95) rotate(-1deg);
+          filter: blur(1px);
+        }
+
+        /* Smooth overlay transitions */
+        .slideshow-overlay {
+          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Cinematic navigation dots */
+        .nav-dot {
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-dot-active {
+          transform: scale(1.3);
+          box-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+        }
+
+        /* Smooth arrow navigation */
+        .nav-arrow {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          backdrop-filter: blur(10px);
+        }
+
+        .nav-arrow:hover {
+          transform: scale(1.1);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Cinematic fade transitions for category gallery */
+        .category-gallery-enter {
+          opacity: 0;
+          transform: scale(0.95) translateY(20px);
+        }
+
+        .category-gallery-active {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Smooth image zoom on hover */
+        .image-zoom-hover {
+          transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .image-zoom-hover:hover {
+          transform: scale(1.05);
         }
       `}</style>
 
@@ -278,7 +474,7 @@ export default function Home() {
                 </div>
                 <h1 className="text-6xl lg:text-7xl font-bold text-gray-800 leading-tight tracking-wide" style={{ fontFamily: 'serif' }}>
                   Искусство
-                  <span className="block text-amber-700 italic">запечатлеть</span>
+                  <span className="block text-amber-700 italic">сохранять</span>
                   <span className="block text-gray-600">моменты</span>
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed tracking-wide max-w-lg" style={{ fontFamily: 'serif', lineHeight: '1.8' }}>
@@ -317,7 +513,7 @@ export default function Home() {
               </div>
               <div className="absolute -bottom-7 -left-7 bg-white rounded-full p-8 shadow-2xl border border-amber-100 w-32 h-32 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-amber-700 mb-2" style={{ fontFamily: 'serif' }}>8+</div>
+                  <div className="text-4xl font-bold text-amber-700 mb-2" style={{ fontFamily: 'serif' }}>6+</div>
                   <div className="text-sm text-gray-600 tracking-wider uppercase">лет опыта</div>
                   <div className="w-8 h-px bg-amber-400 mx-auto mt-2"></div>
                 </div>
@@ -444,31 +640,34 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
             {[
               {
-                image: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/9d573aa3-6bda-4017-9a77-049ac4558f61.jpg",
+                image: familyImage1,
                 icon: Heart,
                 title: "Семейные фотосессии",
-                description: "Теплота семейного очага, искренние эмоции и безграничная любовь, запечатленные в каждом кадре"
+                description: "Теплота семейного очага, искренние эмоции детей и нежная любовь, запечатленные в каждом кадре",
+                category: "family"
               },
               {
-                image: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/ef9c6e22-550b-49e9-8e4d-0a3bc653d9bd.jpg",
+                image: baptismImage1,
                 icon: Church,
-                title: "Церемонии венчания",
-                description: "Священные моменты единения душ, торжественность обряда и божественная красота церемонии"
+                title: "Фотосъемки Крещения",
+                description: "Крещение: таинство начала новой духовной жизни. Как важно сохранить на фото эти неповторимые моменты!",
+                category: "baptism"
               },
               {
-                image: "https://pub-cdn.sider.ai/u/U0GVH7028Y5/web-coder/687eaf091acf42c15ca4b8a1/resource/5cff0c09-6eca-4815-bc6d-86f6f0ac7085.jpg",
+                image: weddingImage1,
                 icon: Baby,
-                title: "Фотосессии для беременных",
-                description: "Трепетная красота материнства, нежность ожидания и волшебство предстоящего чуда"
+                title: "Фотосессии на Венчание",
+                description: "Венчание: единство двух сердец перед Богом. Самые красивые и трепетные кадры в Вашей жизни!",
+                category: "wedding"
               }
             ].map((item, index) => (
               <Card key={index} className="overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 border border-amber-100 bg-white animate-on-scroll transform hover:scale-105">
                 <div className="aspect-[4/5] overflow-hidden relative group">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="object-cover w-full h-full hover:scale-110 transition-transform duration-700"
+                    className="object-cover w-full h-full image-zoom-hover"
                   />
                 </div>
                 <CardContent className="p-8">
@@ -478,33 +677,85 @@ export default function Home() {
                     </div>
                     <h3 className="text-2xl font-semibold text-gray-800 tracking-wide" style={{ fontFamily: 'serif' }}>{item.title}</h3>
                   </div>
-                  <p className="text-gray-600 leading-relaxed tracking-wide" style={{ fontFamily: 'serif' }}>
+                  <p className="text-gray-600 leading-relaxed tracking-wide mb-6" style={{ fontFamily: 'serif' }}>
                     {item.description}
                   </p>
+                  <Button 
+                    onClick={() => openCategoryGallery(item.category)}
+                    className="w-full bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                    style={{ fontFamily: 'serif' }}
+                  >
+                    Смотреть галерею
+                  </Button>
                 </CardContent>
               </Card>
             ))}
           </div>
 
-          {/* Интерактивная галерея */}
+          {/* Интерактивная галерея - Избранные работы */}
           <div className="mb-8 animate-on-scroll">
             <h3 className="text-3xl font-bold text-gray-800 text-center mb-12 tracking-wide" style={{ fontFamily: 'serif' }}>
               Избранные работы
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {galleryImages.map((image, index) => (
-                <div 
-                  key={index}
-                  className="aspect-square rounded-2xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-amber-100 transform"
-                  onClick={() => openImageModal(index)}
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="object-cover w-full h-full hover:scale-110 transition-transform duration-700"
-                  />
+            <div className="max-w-4xl mx-auto">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-amber-100">
+                {/* Main slideshow image */}
+                <img
+                  src={galleryImages[slideshowIndex].src}
+                  className="object-cover w-full h-full slideshow-image"
+                  key={slideshowIndex}
+                />
+                
+                {/* Overlay with category info */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent slideshow-overlay">
+                  <div className="absolute bottom-6 left-6 text-white">
+                    <div className="text-sm font-medium tracking-wider uppercase mb-2 opacity-90 transform translate-y-2 transition-all duration-700 delay-200">
+                      {galleryImages[slideshowIndex].category === 'family' && 'Семейные фотосессии'}
+                      {galleryImages[slideshowIndex].category === 'baptism' && 'Фотосъемки Крещения'}
+                      {galleryImages[slideshowIndex].category === 'wedding' && 'Фотосессии на Венчание'}
+                    </div>
+                  </div>
                 </div>
-              ))}
+
+                {/* Navigation dots */}
+                <div className="absolute bottom-6 right-6 flex space-x-2">
+                  {galleryImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSlideshowIndex(index)}
+                      className={`w-3 h-3 rounded-full nav-dot ${
+                        index === slideshowIndex 
+                          ? 'bg-amber-400 nav-dot-active' 
+                          : 'bg-white/50 hover:bg-white/75 hover:scale-110'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                {/* Manual navigation arrows */}
+                <button
+                  onClick={() => setSlideshowIndex((prev) => prev === 0 ? galleryImages.length - 1 : prev - 1)}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-14 h-14 nav-arrow bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30"
+                >
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => setSlideshowIndex((prev) => (prev + 1) % galleryImages.length)}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-14 h-14 nav-arrow bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30"
+                >
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+
+                {/* Click to open gallery */}
+                <div 
+                  className="absolute inset-0 cursor-pointer"
+                  onClick={() => openCategoryGallery(galleryImages[slideshowIndex].category)}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -532,27 +783,40 @@ export default function Home() {
               {
                 icon: Heart,
                 title: "Семейная фотосессия",
-                description: "Полноценная семейная съемка с индивидуальным подходом",
+                description: "Семейная съемка с индивидуальным подходом",
                 price: "от 12 000₽",
                 features: [
                   "60+ обработанных фотографий",
                   "Все исходные файлы",
                   "Приватная онлайн галерея",
                   "Консультация по стилю",
-                  "Съемка 2-3 часа"
+                  "Съемка 1-2 часа"
+                ]
+              },
+              
+              {
+                icon: Church,
+                title: "Крещение",
+                description: "Фотосъемки Крещения",
+                price: "от 12 000₽",
+                features: [
+                  "Съемка всего таинства Крещения",
+                  "100+ обработанных фото",
+                  "Констультации в подготовке",
+                  "Согласование с настоятелем",
+                  "Репортажная и постановочная съемка"
                 ]
               },
               {
                 icon: Church,
                 title: "Венчание",
-                description: "Торжественная съемка священной церемонии",
+                description: "Торжественная съемка Венчания",
                 price: "от 18 000₽",
                 features: [
-                  "Съемка всей церемонии",
-                  "100+ обработанных фото",
+                  "Съемка всего таинства Венчания",
+                  "150+ обработанных фото",
                   "Эксклюзивная фотокнига",
-                  "Согласование с настоятелем",
-                  "Репортажная съемка"
+                  "Фотосъемки в храме и на улице",                  
                 ]
               },
               {
@@ -769,7 +1033,7 @@ export default function Home() {
               </div>
             </div>
             <div className="text-gray-400 text-center md:text-right" style={{ fontFamily: 'serif' }}>
-              <p className="text-lg">© 2024 Все права защищены</p>
+              <p className="text-lg">© MartinMeer D&C 2025 Все права защищены</p>
               <p className="text-sm italic tracking-wide">Искусство запечатлевать моменты, которые останутся навсегда</p>
             </div>
           </div>
@@ -785,6 +1049,101 @@ export default function Home() {
         onPrevious={goToPrevious}
         onNext={goToNext}
       />
+
+      {/* Category Gallery Modal */}
+      {currentGallery && (
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 category-gallery-active">
+          <div className="relative w-full max-w-6xl max-h-full">
+            {/* Header */}
+            <div className="absolute top-4 left-4 right-4 z-30 flex justify-between items-center">
+              <div className="flex items-center space-x-4">
+                <Button
+                  onClick={closeCategoryGallery}
+                  variant="outline"
+                  size="icon"
+                  className="bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30 shadow-lg"
+                >
+                  <X className="h-6 w-6" />
+                </Button>
+                <h2 className="text-2xl font-bold text-white tracking-wide" style={{ fontFamily: 'serif' }}>
+                  {currentGallery === 'family' && 'Семейные фотосессии'}
+                  {currentGallery === 'baptism' && 'Фотосъемки Крещения'}
+                  {currentGallery === 'wedding' && 'Фотосессии на Венчание'}
+                </h2>
+              </div>
+              <div className="text-white text-lg" style={{ fontFamily: 'serif' }}>
+                {categoryImageIndex + 1} / {categoryGalleries[currentGallery as keyof typeof categoryGalleries].length}
+              </div>
+            </div>
+
+            {/* Main Image */}
+            <div className="relative w-full h-full flex items-center justify-center z-10">
+              <img
+                src={categoryGalleries[currentGallery as keyof typeof categoryGalleries][categoryImageIndex].src}
+                alt={categoryGalleries[currentGallery as keyof typeof categoryGalleries][categoryImageIndex].alt}
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl cursor-pointer slideshow-image"
+                onClick={() => goToNextCategory()}
+                key={categoryImageIndex}
+              />
+            </div>
+
+            {/* Navigation Buttons */}
+            <Button
+              onClick={goToPreviousCategory}
+              variant="outline"
+              size="icon"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30"
+            >
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </Button>
+            <Button
+              onClick={goToNextCategory}
+              variant="outline"
+              size="icon"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30"
+            >
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Button>
+
+            {/* Thumbnail Navigation */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
+              <div className="flex space-x-2 bg-white/20 backdrop-blur-md rounded-lg p-2">
+                {categoryGalleries[currentGallery as keyof typeof categoryGalleries].map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCategoryImageIndex(index)}
+                    className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 cursor-pointer ${
+                      index === categoryImageIndex 
+                        ? 'border-amber-400 scale-110' 
+                        : 'border-white/30 hover:border-white/50'
+                    }`}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Keyboard Navigation - positioned behind other elements */}
+            <div className="absolute inset-0 pointer-events-none" 
+                 onKeyDown={(e) => {
+                   if (e.key === 'Escape') closeCategoryGallery();
+                   if (e.key === 'ArrowLeft') goToPreviousCategory();
+                   if (e.key === 'ArrowRight') goToNextCategory();
+                 }}
+                 tabIndex={0}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

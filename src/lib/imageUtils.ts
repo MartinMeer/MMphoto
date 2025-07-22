@@ -28,16 +28,22 @@ export const GALLERY_CATEGORIES: GalleryCategory[] = [
     icon: 'heart'
   },
   {
-    id: 'wedding',
-    name: 'Церемонии венчания',
+    id: 'baptism',
+    name: 'Съемки таинства Крещения',
     description: 'Священные моменты единения душ, торжественность обряда',
     icon: 'church'
   },
   {
-    id: 'pregnancy',
-    name: 'Фотосессии для беременных',
-    description: 'Трепетная красота материнства, нежность ожидания',
+    id: 'children',
+    name: 'Детские фотосессии',
+    description: 'Невинность детства, радость и любопытство',
     icon: 'baby'
+  },
+  {
+    id: 'ch-wedding',
+    name: 'Свадебные фотосессии',
+    description: 'Романтические моменты, любовь и торжество',
+    icon: 'heart'
   }
 ];
 
@@ -130,31 +136,45 @@ export const SAMPLE_LOCAL_IMAGES: ImageData[] = [
     featured: false
   },
   
-  // Wedding images
+  // Baptism images
   {
-    src: '/src/assets/images/gallery/wedding/wedding-ceremony-001.jpg',
-    alt: 'Церемония венчания в храме',
-    category: 'wedding',
+    src: '/src/assets/images/gallery/baptism/baptism-ceremony-001.jpg',
+    alt: 'Церемония крещения в храме',
+    category: 'baptism',
     featured: true
   },
   {
-    src: '/src/assets/images/gallery/wedding/wedding-ceremony-002.jpg',
-    alt: 'Обмен обручальными кольцами',
-    category: 'wedding',
+    src: '/src/assets/images/gallery/baptism/baptism-ceremony-002.jpg',
+    alt: 'Таинство крещения',
+    category: 'baptism',
     featured: false
   },
   
-  // Pregnancy images
+  // Children images
   {
-    src: '/src/assets/images/gallery/pregnancy/pregnancy-outdoor-001.jpg',
-    alt: 'Фотосессия беременной женщины',
-    category: 'pregnancy',
+    src: '/src/assets/images/gallery/children/children-session-001.jpg',
+    alt: 'Детская фотосессия',
+    category: 'children',
     featured: true
   },
   {
-    src: '/src/assets/images/gallery/pregnancy/pregnancy-outdoor-002.jpg',
-    alt: 'Силуэт беременной на закате',
-    category: 'pregnancy',
+    src: '/src/assets/images/gallery/children/children-session-002.jpg',
+    alt: 'Смеющиеся дети',
+    category: 'children',
+    featured: false
+  },
+  
+  // Wedding images
+  {
+    src: '/src/assets/images/gallery/ch-wedding/wedding-ceremony-001.jpg',
+    alt: 'Свадебная церемония',
+    category: 'ch-wedding',
+    featured: true
+  },
+  {
+    src: '/src/assets/images/gallery/ch-wedding/wedding-ceremony-002.jpg',
+    alt: 'Молодожены',
+    category: 'ch-wedding',
     featured: false
   }
 ];
@@ -180,7 +200,8 @@ export const migrateToLocalImages = (externalImages: ImageData[]): ImageData[] =
  */
 const getCategoryFromUrl = (url: string): string => {
   if (url.includes('family')) return 'family';
-  if (url.includes('wedding') || url.includes('church')) return 'wedding';
-  if (url.includes('pregnancy') || url.includes('baby')) return 'pregnancy';
+  if (url.includes('baptism') || url.includes('church')) return 'baptism';
+  if (url.includes('children') || url.includes('baby')) return 'children';
+  if (url.includes('ch-wedding') || url.includes('wedding')) return 'ch-wedding';
   return 'family'; // default
 }; 

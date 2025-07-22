@@ -34,8 +34,9 @@ export default function LocalImageGallery({ images, onImageClick }: LocalImageGa
   const getCategoryIcon = (categoryId: string) => {
     switch (categoryId) {
       case 'family': return <Heart className="h-4 w-4" />;
-      case 'wedding': return <Church className="h-4 w-4" />;
-      case 'pregnancy': return <Baby className="h-4 w-4" />;
+      case 'baptism': return <Church className="h-4 w-4" />;
+      case 'children': return <Baby className="h-4 w-4" />;
+      case 'ch-wedding': return <Heart className="h-4 w-4" />;
       default: return <Heart className="h-4 w-4" />;
     }
   };
